@@ -1,4 +1,4 @@
-package com.jerolba.sparta.controller;
+package com.sparta.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

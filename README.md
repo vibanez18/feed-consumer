@@ -4,7 +4,7 @@ We have organized a sandbox for you to show your Java skills to deal with a real
  
 The project is composed by two parts, the client and the server:
 
- The client is a .jar provided by us, this client will perform two tasks: it will work as the feed that will send the data to the API and after feeding the server. it will request some data from the API.
+ The client is a .jar provided by us, this client will perform two tasks: it will work as the feed that will send the data to the API and after feeding the server, it will request some data from the API.
 
  The server is the part you need to code, we have started a SpringBoot application and already defined the two endpoints you need to code: a POST method called 'load', that will receive the data from the client provided, and a GET method called 'total', that will be the method that the client will use to request the total of readings sent by provider.
 

@@ -11,9 +11,11 @@ The project is composed by two parts, the client and the server:
 The result of this exercise will be the base on which we will perform the technical interview, try to be clean and give a simple solution for what is requested, although the client is not going to request all the mapping data, the server will need to map it completely.
 
 IMPORTANT NOTES:
+
 - The client will try to connect to http://localhost:8080 to find the API.
 - Do not use a database to store the data, just do it in memory.
 - The format the data is being sent is at the end of this README.
+- And just in case... to run the jar you need to execute: java -jar sparta-client.jar
  
 If you have any question at anytime, do not hesitate to contact Luis on this email: luis@spartacommodities.com
 

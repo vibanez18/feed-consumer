@@ -28,7 +28,7 @@ message LoadBatch {
 }
 
 message Record {
-    int32 recordIndex;
+    int64 recordIndex;
     int64 timestamp;
     String city;
     int32 numberBytesSensorData;  # Number of bytes used in following sensorData section

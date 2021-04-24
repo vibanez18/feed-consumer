@@ -24,7 +24,7 @@ public class RecordService {
         this.recordRepository = recordRepository;
     }
 
-    public Integer loadRecords(List<RecordDto> recordDtos, String provider) {
+    public List<RecordDto> loadRecords(List<RecordDto> recordDtos, String provider) {
         Preconditions.checkArgument(nonNull(recordDtos), "RecordDtos must not be null");
         Preconditions.checkArgument(StringUtils.isNotBlank(provider), "Provider must not be null nor empty");
 
@@ -32,7 +32,8 @@ public class RecordService {
 
         logger.info("Load {} records from Provider: {}", records.size(), provider);
 
-        return records != null ? records.size() : 0;
+        return mapper.fromEntities(records);
+
     }
 
     public Integer totalMessagesByProvider(String provider) {

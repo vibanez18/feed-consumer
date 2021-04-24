@@ -1,7 +1,7 @@
-package com.sparta.infrastructure.rest.mapper.record;
+package com.sparta.infrastructure.rest.mapper;
 
-import com.sparta.infrastructure.rest.dto.record.RecordDto;
-import com.sparta.infrastructure.rest.dto.record.SensorDto;
+import com.sparta.application.service.RecordDto;
+import com.sparta.application.service.SensorDto;
 import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayInputStream;
@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Component
-public class RecordMapper {
+public class ByteArrayMapper {
 
     public List<RecordDto> byteArrayToRecord(byte[] bytes) throws IOException {
         ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
@@ -46,7 +46,7 @@ public class RecordMapper {
 
     private List<SensorDto> readSensors(DataInputStream di) throws IOException {
         //TODO: unknown field
-        final int unknown = di.readInt();
+        di.readInt();
         final int length = di.readInt();
         SensorDto[] sensorDtos = new SensorDto[length];
 

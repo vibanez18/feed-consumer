@@ -1,4 +1,4 @@
-package com.sparta.infrastructure.rest.mapper;
+package com.sparta.application.mapper;
 
 import java.util.Collections;
 import java.util.List;

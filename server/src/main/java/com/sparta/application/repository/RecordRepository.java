@@ -7,4 +7,6 @@ import java.util.List;
 public interface RecordRepository {
 
     List<Record> saveAllByProvider(String provider, List<Record> records);
+
+    Integer findMessagesByProvider(String provider);
 }

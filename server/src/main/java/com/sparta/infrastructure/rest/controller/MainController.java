@@ -27,6 +27,6 @@ public class MainController {
 
   @GetMapping("/data/{provider}/total")
   public int total(@PathVariable("provider") String provider) {
-    return 0;
+    return this.recordService.totalMessagesByProvider(provider);
   }
 }

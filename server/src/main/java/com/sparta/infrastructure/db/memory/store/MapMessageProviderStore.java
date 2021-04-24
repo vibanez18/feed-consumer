@@ -13,7 +13,7 @@ public class MapMessageProviderStore {
 
     public void addElement(String key, Integer value) {
         final Integer messages = this.store.get(key);
-
+        //TODO: try to remove the if
         if (messages != null) {
             this.store.computeIfPresent(key, (k, v) -> messages + value);
         } else {

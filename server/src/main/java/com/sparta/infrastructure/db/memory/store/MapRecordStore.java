@@ -5,11 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MapStore<T> {
+public class MapRecordStore<T> {
 
     private Map<String, List<T>> store;
 
-    public MapStore() {
+    public MapRecordStore() {
         this.store = new HashMap<>();
     }
 

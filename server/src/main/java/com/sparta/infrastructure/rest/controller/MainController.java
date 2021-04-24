@@ -1,6 +1,7 @@
 package com.sparta.infrastructure.rest.controller;
 
 import com.sparta.application.service.RecordDto;
+import com.sparta.application.service.RecordService;
 import com.sparta.infrastructure.rest.mapper.ByteArrayMapper;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,15 +12,17 @@ import java.util.List;
 public class MainController {
 
   private final ByteArrayMapper byteArrayMapper;
+  private final RecordService recordService;
 
-  public MainController(ByteArrayMapper byteArrayMapper) {
+  public MainController(ByteArrayMapper byteArrayMapper, RecordService recordService) {
     this.byteArrayMapper = byteArrayMapper;
+    this.recordService = recordService;
   }
 
   @PostMapping("/load/{provider}")
   public int load(@PathVariable("provider") String provider, @RequestBody byte[] content) throws IOException {
     final List<RecordDto> recordDtos = byteArrayMapper.byteArrayToRecord(content);
-    return 0;
+    return this.recordService.loadRecords(recordDtos, provider);
   }
 
   @GetMapping("/data/{provider}/total")

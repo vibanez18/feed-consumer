@@ -23,11 +23,11 @@ class RecordServiceTest {
     public static final String PROVIDER = "provider";
 
     @InjectMocks
-    private RecordService testee;
+    RecordService testee;
     @Mock
-    private RecordMapper mapper;
+    RecordMapper mapper;
     @Mock
-    private RecordRepository recordRepository;
+    RecordRepository recordRepository;
 
     @Test
     void loadRecords_WhenParametersOk_ThenReturnTotal() {

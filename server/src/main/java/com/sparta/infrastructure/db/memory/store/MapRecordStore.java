@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class MapRecordStore<T> {
 
-    private Map<String, List<T>> store;
+    private final Map<String, List<T>> store;
 
     public MapRecordStore() {
         this.store = new HashMap<>();
@@ -20,6 +20,6 @@ public class MapRecordStore<T> {
 
     public List<T> getElement(String key) {
         final List<T> result = this.store.get(key);
-        return result != null ? Collections.unmodifiableList(result) : Collections.EMPTY_LIST;
+        return result != null ? Collections.unmodifiableList(result) : Collections.emptyList();
     }
 }

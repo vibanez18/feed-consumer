@@ -17,7 +17,7 @@ import static java.util.Objects.nonNull;
 public class RecordMemoryRepository implements RecordRepository {
 
     private static final Logger logger = LoggerFactory.getLogger(RecordMemoryRepository.class);
-    private final MapRecordStore mapRecordStore = new MapRecordStore<List<Record>>();
+    private final MapRecordStore<Record> mapRecordStore = new MapRecordStore<>();
     private final MapMessageProviderStore mapMessageProviderStore = new MapMessageProviderStore();
 
     @Override

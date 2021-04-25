@@ -23,6 +23,8 @@ public class MapMessageProviderStore {
     }
 
     public Integer getElement(String key) {
-        return this.store.get(key);
+        final Integer messages = this.store.get(key);
+
+        return messages != null ? messages : 0;
     }
 }

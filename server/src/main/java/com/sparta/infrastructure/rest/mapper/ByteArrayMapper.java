@@ -14,24 +14,24 @@ import java.util.List;
 public class ByteArrayMapper {
 
     public List<RecordDto> byteArrayToRecord(byte[] bytes) throws IOException {
-        ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
-        DataInputStream dataInputStream = new DataInputStream(bis);
+        var bis = new ByteArrayInputStream(bytes);
+        var dataInputStream = new DataInputStream(bis);
 
-        final long lengthRecord = dataInputStream.readLong();
-        RecordDto[] recordDtos = new RecordDto[(int) lengthRecord];
+        final var lengthRecord = dataInputStream.readLong();
+        var recordDtos = new RecordDto[(int) lengthRecord];
 
-        for (int i = 0; i < lengthRecord; i++) {
+        for (var i = 0; i < lengthRecord; i++) {
             //index record
-            final long indexRecord = dataInputStream.readLong();
+            final var indexRecord = dataInputStream.readLong();
             //timestamp
-            final long timestamp = dataInputStream.readLong();
+            final var timestamp = dataInputStream.readLong();
             //city
-            final int lengthCityBytes = dataInputStream.readInt();
-            final String city = new String(dataInputStream.readNBytes(lengthCityBytes));
+            final var lengthCityBytes = dataInputStream.readInt();
+            final var city = new String(dataInputStream.readNBytes(lengthCityBytes));
             //sensor
             final List<SensorDto> sensorDtoList = readSensors(dataInputStream);
             //checksum
-            final long checksum = dataInputStream.readLong();
+            final var checksum = dataInputStream.readLong();
             //TODO: numberBytesSensorData
             recordDtos[i] = RecordDto.builder()
                     .withRecordIndex(indexRecord)
@@ -47,13 +47,13 @@ public class ByteArrayMapper {
     private List<SensorDto> readSensors(DataInputStream di) throws IOException {
         //TODO: unknown field
         di.readInt();
-        final int length = di.readInt();
-        SensorDto[] sensorDtos = new SensorDto[length];
+        final var length = di.readInt();
+        var sensorDtos = new SensorDto[length];
 
-        for (int i = 0; i < length; i++) {
-            int lengthId = di.readInt();
-            String id = new String(di.readNBytes(lengthId));
-            int measure = di.readInt();
+        for (var i = 0; i < length; i++) {
+            var lengthId = di.readInt();
+            var id = new String(di.readNBytes(lengthId));
+            var measure = di.readInt();
             sensorDtos[i] = SensorDto.builder()
                     .withId(id)
                     .withMeasure(measure)

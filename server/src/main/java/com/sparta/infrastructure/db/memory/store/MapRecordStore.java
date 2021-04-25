@@ -19,6 +19,7 @@ public class MapRecordStore<T> {
     }
 
     public List<T> getElement(String key) {
-        return Collections.unmodifiableList(this.store.get(key));
+        final List<T> result = this.store.get(key);
+        return result != null ? Collections.unmodifiableList(result) : Collections.EMPTY_LIST;
     }
 }

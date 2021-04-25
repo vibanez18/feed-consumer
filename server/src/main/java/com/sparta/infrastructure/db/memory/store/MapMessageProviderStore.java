@@ -27,4 +27,9 @@ public class MapMessageProviderStore {
 
         return messages != null ? messages : 0;
     }
+
+    // Only for test
+    private void deleteAll() {
+        this.store.clear();
+    }
 }

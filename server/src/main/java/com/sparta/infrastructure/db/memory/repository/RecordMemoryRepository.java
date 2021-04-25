@@ -9,6 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.List;
 
 import static java.util.Objects.nonNull;
@@ -39,5 +41,12 @@ public class RecordMemoryRepository implements RecordRepository {
         final Integer messages = this.mapMessageProviderStore.getElement(provider);
 
         return messages != null ? messages : 0;
+    }
+
+    // Only for test
+    private void purgeMessageStore() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        Method method = mapMessageProviderStore.getClass().getDeclaredMethod("deleteAll");
+        method.setAccessible(true);
+        method.invoke(mapMessageProviderStore);
     }
 }

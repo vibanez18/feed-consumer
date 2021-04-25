@@ -1,4 +1,4 @@
-package com.sparta.infrastructure.store;
+package com.sparta.infrastructure.db.store;
 
 import com.sparta.infrastructure.db.memory.store.MapMessageProviderStore;
 import org.junit.jupiter.api.Test;

@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class MapMessageProviderStore {
 
-    private Map<String, Integer> store;
+    private final Map<String, Integer> store;
 
     public MapMessageProviderStore() {
         this.store = new HashMap<>();
@@ -29,6 +29,7 @@ public class MapMessageProviderStore {
     }
 
     // Only for test
+    @SuppressWarnings("squid:S1144")
     private void deleteAll() {
         this.store.clear();
     }

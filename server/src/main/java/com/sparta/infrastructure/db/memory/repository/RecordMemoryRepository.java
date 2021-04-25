@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.List;
 
 import static java.util.Objects.nonNull;
@@ -44,8 +43,9 @@ public class RecordMemoryRepository implements RecordRepository {
     }
 
     // Only for test
+    @SuppressWarnings("squid:S1144")
     private void purgeMessageStore() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        Method method = mapMessageProviderStore.getClass().getDeclaredMethod("deleteAll");
+        var method = mapMessageProviderStore.getClass().getDeclaredMethod("deleteAll");
         method.setAccessible(true);
         method.invoke(mapMessageProviderStore);
     }

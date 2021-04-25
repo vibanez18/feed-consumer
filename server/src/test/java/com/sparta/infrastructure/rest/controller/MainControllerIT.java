@@ -17,7 +17,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -94,7 +93,7 @@ class MainControllerIT {
     }
 
     private void purgeMessageStore() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        Method method = memoryRepository.getClass().getDeclaredMethod("purgeMessageStore");
+        var method = memoryRepository.getClass().getDeclaredMethod("purgeMessageStore");
         method.setAccessible(true);
         method.invoke(memoryRepository);
     }

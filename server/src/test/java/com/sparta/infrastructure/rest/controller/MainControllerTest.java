@@ -24,7 +24,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 @AutoConfigureMockMvc
 @ExtendWith(SpringExtension.class)
-class MainControllerIT {
+class MainControllerTest {
 
     public static final String PROVIDER = "provider";
 

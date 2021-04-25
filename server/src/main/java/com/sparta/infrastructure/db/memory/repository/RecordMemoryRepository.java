@@ -39,6 +39,8 @@ public class RecordMemoryRepository implements RecordRepository {
     public Integer findMessagesByProvider(String provider) {
         final Integer messages = this.mapMessageProviderStore.getElement(provider);
 
+        logger.debug("Get {} messages from Provider: {}", messages, provider);
+
         return messages != null ? messages : 0;
     }
 

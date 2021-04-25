@@ -38,7 +38,11 @@ public class RecordService {
 
     public Integer totalMessagesByProvider(String provider) {
         Preconditions.checkArgument(StringUtils.isNotBlank(provider), "Provider must not be null nor empty");
-        return this.recordRepository.findMessagesByProvider(provider);
+        final Integer messages = this.recordRepository.findMessagesByProvider(provider);
+
+        logger.info("Unload {} messages from Provider: {}", messages, provider);
+
+        return messages;
     }
 
 }

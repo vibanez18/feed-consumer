@@ -29,25 +29,25 @@ public class ByteArrayMapper {
             final var lengthCityBytes = dataInputStream.readInt();
             final var city = new String(dataInputStream.readNBytes(lengthCityBytes));
             //sensor
-            final List<SensorDto> sensorDtoList = readSensors(dataInputStream);
+            //TODO: unknown field
+            dataInputStream.readInt();
+            final var sensorLength = dataInputStream.readInt();
+            final List<SensorDto> sensorDtoList = readSensors(dataInputStream, sensorLength);
             //checksum
             final var checksum = dataInputStream.readLong();
-            //TODO: numberBytesSensorData
             recordDtos[i] = RecordDto.builder()
                     .withRecordIndex(indexRecord)
                     .withTimestamp(timestamp)
                     .withCity(city)
                     .withSensorsDataList(sensorDtoList)
+                    .withNumberBytesSensorData(sensorLength)
                     .withCrc32SensorsData(checksum)
                     .build();
         }
         return Arrays.asList(recordDtos);
     }
 
-    private List<SensorDto> readSensors(DataInputStream di) throws IOException {
-        //TODO: unknown field
-        di.readInt();
-        final var length = di.readInt();
+    private List<SensorDto> readSensors(DataInputStream di, int length) throws IOException {
         var sensorDtos = new SensorDto[length];
 
         for (var i = 0; i < length; i++) {

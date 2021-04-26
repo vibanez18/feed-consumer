@@ -7,19 +7,25 @@ import com.sparta.infrastructure.db.memory.store.MapMessageProviderStore;
 import com.sparta.infrastructure.db.memory.store.MapRecordStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import static java.util.Objects.nonNull;
 
-@Component
+@Repository
 public class RecordMemoryRepository implements RecordRepository {
 
     private static final Logger logger = LoggerFactory.getLogger(RecordMemoryRepository.class);
-    private final MapRecordStore<Record> mapRecordStore = new MapRecordStore<>();
-    private final MapMessageProviderStore mapMessageProviderStore = new MapMessageProviderStore();
+    private final MapRecordStore<Record> mapRecordStore;
+    private final MapMessageProviderStore mapMessageProviderStore;
+
+    public RecordMemoryRepository() {
+        this.mapRecordStore = new MapRecordStore<>();
+        this.mapMessageProviderStore = new MapMessageProviderStore();
+    }
+
 
     @Override
     public List<Record> saveAllByProvider(String provider, List<Record> records) {

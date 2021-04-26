@@ -15,7 +15,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.lang.reflect.InvocationTargetException;
 
-import static com.sparta.TestUtils.createRecords;
+import static com.sparta.util.TestUtils.createRecords;
 import static org.assertj.core.api.Assertions.assertThat;
 
 

@@ -1,4 +1,4 @@
-package com.sparta.infrastructure.client;
+package com.sparta.util;
 
 import com.github.javafaker.Faker;
 import com.github.javafaker.GameOfThrones;

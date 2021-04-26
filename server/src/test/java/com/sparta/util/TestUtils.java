@@ -1,6 +1,4 @@
-package com.sparta;
-
-import com.sparta.infrastructure.client.DataClientFactory;
+package com.sparta.util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

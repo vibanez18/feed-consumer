@@ -1,6 +1,5 @@
 package com.sparta.infrastructure.rest.controller;
 
-import com.sparta.infrastructure.client.DataClientFactory;
 import com.sparta.infrastructure.db.memory.repository.RecordMemoryRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,10 +13,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
+import static com.sparta.TestUtils.createRecords;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
@@ -43,7 +41,7 @@ class MainControllerTest {
     void loadEndPoint_WhenCalled_ThenTotalRecordSentReturned() throws Exception {
         final MvcResult result = mvc.perform(MockMvcRequestBuilders
                 .post("/load/{provider}", PROVIDER)
-                .content(createRecords())
+                .content(createRecords(100))
                 .accept(MediaType.ALL))
                 .andReturn();
 
@@ -67,7 +65,7 @@ class MainControllerTest {
     void loadAndRead_WhenCalledTwoTimes_ThenTotalMessagesProvidersReturned() throws Exception {
         final MvcResult firstLoad = mvc.perform(MockMvcRequestBuilders
                 .post("/load/{provider}", PROVIDER)
-                .content(createRecords())
+                .content(createRecords(100))
                 .accept(MediaType.ALL))
                 .andReturn();
 
@@ -76,7 +74,7 @@ class MainControllerTest {
 
         final MvcResult secondLoad = mvc.perform(MockMvcRequestBuilders
                 .post("/load/{provider}", PROVIDER)
-                .content(createRecords())
+                .content(createRecords(100))
                 .accept(MediaType.ALL))
                 .andReturn();
 
@@ -97,12 +95,4 @@ class MainControllerTest {
         method.setAccessible(true);
         method.invoke(memoryRepository);
     }
-
-    private byte[] createRecords() throws IOException {
-        DataClientFactory dataFactory = new DataClientFactory();
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        dataFactory.write(baos, 100);
-        return baos.toByteArray();
-    }
-
 }

@@ -1,5 +1,6 @@
 package com.sparta.infrastructure.rest.mapper;
 
+import com.google.common.base.Preconditions;
 import com.sparta.application.service.RecordDto;
 import com.sparta.application.service.SensorDto;
 import org.springframework.stereotype.Component;
@@ -10,10 +11,13 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+import static java.util.Objects.nonNull;
+
 @Component
 public class ByteArrayMapper {
 
     public List<RecordDto> byteArrayToRecord(byte[] bytes) throws IOException {
+        Preconditions.checkArgument(nonNull(bytes), "Bytes[] must not be null");
         var bis = new ByteArrayInputStream(bytes);
         var dataInputStream = new DataInputStream(bis);
 

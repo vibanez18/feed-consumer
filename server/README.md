@@ -29,4 +29,10 @@ running integration tests.
 
     mvn spring-boot:run 
 
+## TODO
+
+- ProtoBuff
+- Api async --> service async
+- actuator --> exponer metricas por provider
+
 

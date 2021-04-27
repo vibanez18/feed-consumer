@@ -7,14 +7,17 @@ import com.sparta.domain.record.Record;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 import static java.util.Objects.nonNull;
 
 @Service
 public class RecordService {
+
     private static final Logger logger = LoggerFactory.getLogger(RecordService.class);
     private final RecordMapper mapper;
     private final RecordRepository recordRepository;
@@ -24,7 +27,8 @@ public class RecordService {
         this.recordRepository = recordRepository;
     }
 
-    public List<RecordDto> loadRecords(List<RecordDto> recordDtos, String provider) {
+    @Async
+    public CompletableFuture<List<RecordDto>> loadRecords(List<RecordDto> recordDtos, String provider) {
         Preconditions.checkArgument(nonNull(recordDtos), "RecordDtos must not be null");
         Preconditions.checkArgument(StringUtils.isNotBlank(provider), "Provider must not be null nor empty");
 
@@ -32,7 +36,7 @@ public class RecordService {
 
         logger.info("Load {} records from Provider: {}", records.size(), provider);
 
-        return mapper.fromEntities(records);
+        return CompletableFuture.completedFuture(mapper.fromEntities(records));
 
     }
 

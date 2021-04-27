@@ -11,6 +11,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -30,16 +32,16 @@ class RecordServiceTest {
     RecordRepository recordRepository;
 
     @Test
-    void loadRecords_WhenParametersOk_ThenReturnTotal() {
+    void loadRecords_WhenParametersOk_ThenReturnTotal() throws ExecutionException, InterruptedException {
         final List<RecordDto> recordDtos = Arrays.asList(mock(RecordDto.class), mock(RecordDto.class), mock(RecordDto.class));
         final List<Record> recordSaved = Arrays.asList(mock(Record.class), mock(Record.class), mock(Record.class));
 
         when(recordRepository.saveAllByProvider(PROVIDER, mapper.fromDtos(recordDtos))).thenReturn(recordSaved);
         when(mapper.fromEntities(anyList())).thenReturn(recordDtos);
 
-        final List<RecordDto> result = testee.loadRecords(recordDtos, PROVIDER);
+        final CompletableFuture<List<RecordDto>> result = testee.loadRecords(recordDtos, PROVIDER);
 
-        assertThat(result).isNotNull()
+        assertThat(result.get()).isNotNull()
                 .isEqualTo(recordDtos);
         verify(recordRepository).saveAllByProvider(PROVIDER, mapper.fromDtos(recordDtos));
     }

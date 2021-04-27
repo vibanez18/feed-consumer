@@ -21,9 +21,10 @@ public class MainController {
 
   @PostMapping("/load/{provider}")
   public int load(@PathVariable("provider") String provider, @RequestBody byte[] content) throws IOException {
-    final List<RecordDto> recordDtos = this.recordService.loadRecords(byteArrayMapper.byteArrayToRecord(content), provider);
+    final List<RecordDto> dtos = byteArrayMapper.byteArrayToRecord(content);
+    this.recordService.loadRecords(dtos, provider);
 
-    return recordDtos != null ? recordDtos.size() : 0;
+    return dtos != null ? dtos.size() : 0;
   }
 
   @GetMapping("/data/{provider}/total")

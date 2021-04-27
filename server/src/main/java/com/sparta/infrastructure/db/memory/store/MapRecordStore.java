@@ -13,9 +13,8 @@ public class MapRecordStore<T> {
         this.store = new HashMap<>();
     }
 
-    // TODO: I assume that the data is like a cache and it has to be updated.
     public void addElement(String key, List<T> value) {
-        this.store.putIfAbsent(key, value);
+        this.store.put(key, value);
     }
 
     public List<T> getElement(String key) {

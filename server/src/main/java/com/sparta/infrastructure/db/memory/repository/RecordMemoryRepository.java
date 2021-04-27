@@ -26,7 +26,6 @@ public class RecordMemoryRepository implements RecordRepository {
         this.mapMessageProviderStore = new MapMessageProviderStore();
     }
 
-
     @Override
     public List<Record> saveAllByProvider(String provider, List<Record> records) {
         Preconditions.checkArgument(nonNull(records), "Records must not be null");
@@ -39,6 +38,11 @@ public class RecordMemoryRepository implements RecordRepository {
         this.mapMessageProviderStore.addElement(provider, recordSize);
 
         return records;
+    }
+
+    @Override
+    public List<Record> findRecordByProvider(String provider) {
+        return mapRecordStore.getElement(provider);
     }
 
     @Override
